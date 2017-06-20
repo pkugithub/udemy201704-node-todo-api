@@ -14,4 +14,10 @@ Use heroku addons:docs mongolab to view documentation
 lmrc7734:udemy201704-node-todo-api pei.ku$ heroku config
 === blooming-meadow-39443 Config Vars
 MONGODB_URI: mongodb://heroku_kmlz64wt:60sbirs6f76qidfggoq9al0p2m@ds131432.mlab.com:31432/heroku_kmlz64wt
+
+ 1155  git push			# push to github
+ 1156  git push heroku master	# push to heroku git repo
+
+lmrc7734:udemy201704-node-todo-api pei.ku$ heroku logs
+
 ```
