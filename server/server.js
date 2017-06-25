@@ -16,7 +16,7 @@ const port = process.env.PORT ;
 app.use(bodyParser.json())
 
 
-
+//
 app.post('/todos', (req, res) => {
   // console.log(JSON.stringify(req, undefined, 2))
   // console.log(req.body)
@@ -120,6 +120,20 @@ app.patch('/todos/:id', (req, res) => {
 
 })
 
+app.post('/users', (req, res) => {
+
+  var objectUser = _.pick(req.body, ['email', 'password'])
+
+  var newUser = new User(objectUser)
+
+  newUser.save().then( (doc) => {
+    console.log('newUser saved: ', JSON.stringify(doc))
+    res.send(doc);
+  }).catch((err) => {
+    console.log('newUser save failed: ',err)
+    res.status(400).send(err)
+  })
+})
 
 
 //
