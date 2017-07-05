@@ -26,10 +26,10 @@ app.post('/todos', (req, res) => {
   })
 
   newTodo.save().then( (doc) => {
-    console.log('newTodo saved: ', JSON.stringify(doc))
+    // console.log('newTodo saved: ', JSON.stringify(doc))
     res.send(doc);
   }, (err) => {
-    console.log('newTodo save failed: ',err)
+    // console.log('newTodo save failed: ',err)
     res.status(400).send(err)
   })
 
@@ -54,7 +54,7 @@ app.get('/todos/:id', (req, res) => {
     return res.status(404).send(`ID ${id} not valid`)
   }
 
-  console.log(`id=${id}`)
+  // console.log(`id=${id}`)
 
   Todo.findById(id).then( (todo) => {
     if (!todo) {
@@ -75,7 +75,7 @@ app.delete('/todos/:id', (req, res) => {
     return res.status(404).send(`ID ${id} not valid`)
   }
 
-  console.log(`id=${id}`)
+  // console.log(`id=${id}`)
 
   Todo.findByIdAndRemove(id).then( (todo) => {
     if (!todo) {
@@ -128,14 +128,14 @@ app.post('/users', (req, res) => {
   var newUser = new User(objectUser)
 
   newUser.save().then( () => {
-    console.log('newUser saved: ', JSON.stringify(newUser))
+    // console.log('newUser saved: ', JSON.stringify(newUser))
 
     return newUser.generateAuthToken() ;
   }).then( (token) => {
     res.header({'x-auth': token }).send(newUser)
 
   }).catch((err) => {
-    console.log('newUser save failed: ',err)
+    // console.log('newUser save failed: ',err)
     res.status(400).send(err)
   })
 })
