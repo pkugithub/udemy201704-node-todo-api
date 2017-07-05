@@ -1,20 +1,36 @@
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
 
-var data = {
-  id: 'bob'
-}
+var password = '123abdXX'
 
-var token = jwt.sign(data, 'salty')
-console.log(`token: ${token}`)
+// bcrypt.genSalt(10, (err, salt) => {
+//     console.log('salt:', salt)
+//   bcrypt.hash(password, salt, (err, hash) => {
+//     console.log('hash:', hash)
+//   })
+// })
 
-try {
-  var decoded = jwt.verify(token, 'salty')
-  console.log(`decoded: ${JSON.stringify(decoded)}`)
-} catch (err) {
-  console.log("hacker denied! " + err)
-}
+hashedPassword = '$2a$10$mKRsDchCBlV1K/Fkgc2gJOEsYVDiev187tLZEbq0Pjvns6J2q9hOW'
 
-console.log(`decoded: ${JSON.stringify(decoded)}`)
+bcrypt.compare(password, hashedPassword, (err, result) => {
+  console.log('result:' , result)
+})
+
+// var data = {
+//   id: 'bob'
+// }
+//
+// var token = jwt.sign(data, 'salty')
+// console.log(`token: ${token}`)
+//
+// try {
+//   var decoded = jwt.verify(token, 'salty')
+//   console.log(`decoded: ${JSON.stringify(decoded)}`)
+// } catch (err) {
+//   console.log("hacker denied! " + err)
+// }
+//
+// console.log(`decoded: ${JSON.stringify(decoded)}`)
 
 // const { SHA256 } = require('crypto-js')
 //
