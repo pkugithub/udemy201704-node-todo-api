@@ -12,6 +12,8 @@ beforeEach( populateToDos )
 
 beforeEach( populateUsers )
 
+// if (false) { // skip these tests ...
+
 describe('POST /todos', () => {
   var test_text = 'test todo text'
 
@@ -308,4 +310,26 @@ describe('POST /users/login', () => {
         }).catch( (e) => done(e));
       })
   })
+});
+
+// } // END OF skip these tests ...
+
+describe('DELETE /users/login/token', () => {
+  it('should remove auth token on logout', (done) => {
+    supertest(app)
+      .delete('/users/me/token')
+      .set('x-auth', users[0].tokens[0].token)
+      .expect(200)
+      .end( (err, res) => {
+        if (err) {
+          return done(err);
+        }
+
+        User.findById(users[0]._id).then( (user) => {
+          // console.log('debug> user:'+user)
+          expect(user.tokens.length).toBe(0);
+          done();
+        }).catch( (e) => done(e));
+      });
+  });
 });
